@@ -1,0 +1,58 @@
+
+sourceCompatibility = 1.8
+compileJava.options.encoding = 'UTF-8'
+
+configurations {
+    deployerJars
+}
+
+dependencies {
+    compile 'org.projectlombok:lombok:1.16.6'
+    compile 'org.apache.commons:commons-lang3:3+'
+    compile 'org.apache.commons:commons-collections4:4+'
+
+    testCompile (group: 'junit', name: 'junit', version: '4+') {
+        exclude group: 'org.hamcrest'
+    }
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+        mavenLocal()
+    }
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+task createProperties(dependsOn: processResources) << {
+
+    def folder = new File( "$buildDir/resources/main/" )
+    if( !folder.exists() ) {
+        folder.mkdirs()
+    }
+
+    def versionFile = new File("$buildDir/resources/main/version.properties")
+
+    def buildNumber = 0;
+    if (versionFile.canRead()) {
+        def Properties versionProps = new Properties()
+        versionProps.load(new FileInputStream(versionFile))
+        buildNumber = versionProps['build_number'] != null ? Integer.parseInt(versionProps['build_number']) + 1 : 1
+    }
+
+    new File("$buildDir/resources/main/version.properties").withWriter { w ->
+        Properties p = new Properties()
+        p['version'] = project.version.toString()
+        p['timestamp'] = String.valueOf(System.currentTimeMillis())
+        p['build_number'] = buildNumber.toString()
+        p.store w, null
+    }
+}
+
+classes {
+    dependsOn createProperties
+}

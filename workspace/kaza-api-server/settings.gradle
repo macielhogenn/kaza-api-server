@@ -1,0 +1,3 @@
+rootProject.name = 'kaza-api'
+include 'kaza-rest-api'
+
