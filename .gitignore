@@ -1,0 +1,3 @@
+workspace/kaza-api-server/.gradle/*
+workspace/kaza-api-server/.idea/*
+workspace/kaza-api-server/kaza-rest-api/build/*
