@@ -22,8 +22,7 @@ public class UserView {
 				+ "<li>acionar?lampada=int	 			</li>"
 				+ "<li>abrir?portao_eletronico=int	 	</li>"
 				+ "<li>intensidade?luminosidade=int 	</li>"
-				+ "<li>ativar?alarme=int 				</li>"
-				+ "<li>notificacao?disparada=int		</li>";
+				+ "<li>ativar?alarme=int 				</li>";
 	}
 	
 	
@@ -50,10 +49,4 @@ public class UserView {
 		message = new Message(ativar, TipoComando.ALARME);
 		cliente.enviar(message);
 	}
-	
-	@RequestMapping("/notificacao")
-	public void notificarAlarmeDisparado(@RequestParam(name = "disparada", required = true) int notificar){
-		
-	}
-
 }

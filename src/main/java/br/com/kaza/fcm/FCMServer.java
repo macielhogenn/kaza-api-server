@@ -31,7 +31,7 @@ public class FCMServer {
 		con.setRequestProperty("Content-Type", "application/json");
 		
 		JSONObject json = new JSONObject();
-		json.put("to", "AAAAeAm6EUc:APA91bHe8oFs9Ea-ldNvz9aSwLYHt5wzZUHJFoQpOyV3fWtk5mVKPxxGBotj5g3VXpT9vlGfG9HmIrw-FFaP68xEljdSlvIQsIqBPwc3zB0XxzzJUwG8lYRlpPTJbzQCXBO7xhLZp_G6SFRhOSN0nmq3NeK9gUOdLQ");
+		json.put("to", "Chave Device");
 		JSONObject info = new JSONObject();
 		info.put("title", "Notificação Alarme");
 		info.put("body", "Alarme disparado!");
